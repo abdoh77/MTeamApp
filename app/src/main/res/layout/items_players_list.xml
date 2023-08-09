@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_layout"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="8dp"
+    app:cardMaxElevation="5dp"
+    android:layout_margin="10dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/playerImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:contentDescription="playerimage"
+            android:src="@drawable/profileimage" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="4dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="50dp"
+                android:text="20 APR"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/edit"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="50dp"
+                android:padding="8dp"
+                android:src="@drawable/baseline_edit_24"
+                app:tint="@color/black" />
+
+            <ImageView
+                android:id="@+id/delete"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/baseline_delete_24"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divider"
+                app:tint="@color/black" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
+            <TextView
+                android:id="@+id/mTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:text="Title"
+                android:textColor="@color/black"
+                android:textSize="19sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/mSubTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:text="SubTitle"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="11dp">
+
+            <ImageButton
+                android:id="@+id/absence_icon"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:contentDescription="Absent"
+                android:src="@drawable/default_person_off_24" />
+
+
+            <ImageButton
+                android:id="@+id/late_icon"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+                android:contentDescription="Late"
+                android:src="@drawable/default_timer_off" />
+
+            <ImageButton
+                android:id="@+id/present_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+
+                android:layout_gravity="center"
+                android:layout_margin="5dp"
+
+                android:contentDescription="OnTime"
+                android:src="@drawable/baseline_turned_in_not_24" />
+
+
+
+        </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
