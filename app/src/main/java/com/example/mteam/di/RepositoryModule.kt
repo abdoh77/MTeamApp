@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
-object RepositoryModule {
+object RepositoryModule {  //this module for digger hilt to communicate with repository
 
     @Provides
     @Singleton
