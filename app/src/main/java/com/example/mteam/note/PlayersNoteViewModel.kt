@@ -4,6 +4,7 @@ package com.example.mteam.note
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.mteam.data.model.LatePlayers
 import com.example.mteam.data.model.PlayersNote
 import com.example.mteam.data.repository.PlayersNoteRepository
 import com.example.mteam.util.UiState
@@ -36,6 +37,12 @@ class PlayersNoteViewModel @Inject constructor(
     val deleteNote: LiveData<UiState<String>> //we used String because we are going to pass doucments ID
         get() = _deleteNote
 
+//    //Add to late
+//    private val _addLateList = MutableLiveData<UiState<String>>()
+//    val addLateList: LiveData<UiState<String>>
+//        get() = _addLateList
+
+
     fun getNotes() {
         _notes.value = UiState.Loading
         repository.getNotes {
@@ -65,6 +72,13 @@ class PlayersNoteViewModel @Inject constructor(
             _deleteNote.value = it
         }
     }
+
+//    fun addLatePlayers(lateNotes: LatePlayers){
+//        _addLateList.value = UiState.Loading
+//        repository.addLatePlayers(lateNotes){
+//            _addLateList.value = it
+//        }
+//    }
 
 
 }

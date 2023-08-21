@@ -4,22 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".BottomNavController">
+
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/players_nav_list_to_details"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="0dp"
+        android:id="@+id/nav_host"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         app:defaultNavHost="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:navGraph="@navigation/bottom_nav_graph"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:navGraph="@navigation/app_navigation" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -35,4 +33,17 @@
         tools:layout_conversion_absoluteWidth="411dp" />
 
 
+
+
+    <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+    <!--            android:id="@+id/fab"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:contentDescription="@string/create"-->
+    <!--            android:src="@drawable/ic_add"-->
+    <!--            app:layout_anchor="@id/bottomNavigationView"-->
+
+    <!--            app:shapeAppearanceOverlay="@style/fab_3_rounded" />-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+

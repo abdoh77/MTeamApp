@@ -1,15 +1,15 @@
 package com.example.mteam.note
 
-import android.nfc.Tag
+
 import android.os.Bundle
-import android.provider.Settings.Global.putString
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+
 import androidx.navigation.fragment.findNavController
+
 import com.example.mteam.R
 import com.example.mteam.data.model.PlayersNote
 import com.example.mteam.databinding.FragmentNotePlayersListBinding
@@ -17,11 +17,20 @@ import com.example.mteam.util.UiState
 import com.example.mteam.util.hide
 import com.example.mteam.util.show
 import com.example.mteam.util.toast
-import com.google.android.material.tabs.TabLayout.TabGravity
+
 import dagger.hilt.android.AndroidEntryPoint
 
+
+
 @AndroidEntryPoint
-class NotePlayersList : Fragment() {
+class NotePlayersList : Fragment(R.layout.fragment_note_players_list) {
+
+    //buttomNavController
+////    val bottomNavigationView = getView().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+//    val navController = findNavController(getView()R.id.main_layout)
+
+
+
 
     val TAG: String = "NotePlayersList"
     lateinit var binding : FragmentNotePlayersListBinding
@@ -44,17 +53,28 @@ class NotePlayersList : Fragment() {
                     putParcelable("note",item)
                 })
             },
-            onDeleteClicked = { pos, item ->
-                deletePosition = pos
-                viewModel.deleteNote(item)
+            onDeleteClicked = {pos, item ->
 
-            }
-        )
+                findNavController().navigate(R.id.action_notePlayersList_to_notePlayersDetails,Bundle().apply {
+                    deletePosition = pos
+                    viewModel.deleteNote(item)
+
+                })
+            })
+
+//            onLateClicked = { pos, item ->
+//
+//                findNavController().navigate(R.id.action_notePlayersList_to_latePlayers, Bundle().apply {
+//                        putParcelable("note", item)
+//
+//                    })
+//            })
 
     }
 
 
     override fun onCreateView(
+
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
@@ -62,11 +82,20 @@ class NotePlayersList : Fragment() {
         return binding.root
     }
 
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.recyclerView.adapter = adapter
         binding.recyclerView.itemAnimator = null
-        binding.createButton.setOnClickListener{
+
+
+
+        binding.fab.setOnClickListener{
+
+
+
             findNavController().navigate(R.id.action_notePlayersList_to_notePlayersDetails,Bundle().apply {
                 putString("type","create")
             })
