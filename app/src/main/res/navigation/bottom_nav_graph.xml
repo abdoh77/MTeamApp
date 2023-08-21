@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@id/notePlayersList">
+
+    <fragment
+        android:id="@+id/notePlayersList"
+        android:name="com.example.mteam.note.NotePlayersList"
+        android:label="fragment_note_players_list"
+        tools:layout="@layout/fragment_note_players_list" />
+    <fragment
+        android:id="@+id/latePlayersList"
+        android:name="com.example.mteam.note.LatePlayersList"
+        android:label="fragment_late_players"
+        tools:layout="@layout/fragment_late_players" />
+</navigation>

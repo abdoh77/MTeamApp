@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mteam.data.model.PlayersNote
+import com.example.mteam.databinding.ItemsLatePlayersBinding
 import com.example.mteam.databinding.ItemsPlayersListBinding
 
 class NoteListingAdapter(
     val onItemClicked: (Int, PlayersNote) -> Unit,
     val onEditClicked: (Int, PlayersNote) -> Unit,
-    val onDeleteClicked: (Int, PlayersNote) -> Unit
+    val onDeleteClicked: (Int, PlayersNote) -> Unit,
+
+//    val onLateClicked: (Int, PlayersNote) -> Unit
+
 ) : RecyclerView.Adapter<NoteListingAdapter.MyViewHolder>() {
 
     private var list: MutableList<PlayersNote> = arrayListOf()
@@ -47,6 +51,8 @@ class NoteListingAdapter(
             binding.edit.setOnClickListener { onEditClicked.invoke(bindingAdapterPosition,item) }
             binding.delete.setOnClickListener { onDeleteClicked.invoke(bindingAdapterPosition,item) }
             binding.itemLayout.setOnClickListener { onItemClicked.invoke(bindingAdapterPosition,item) }
+
+//            binding.lateIcon.setOnClickListener { onLateClicked.invoke(bindingAdapterPosition, item) }
         }
     }
 }

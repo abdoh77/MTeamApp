@@ -11,12 +11,12 @@ plugins {
 
 android {
     namespace 'com.example.mteam'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.mteam"
-        minSdk 21
-        targetSdk 33
+        minSdk 30
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -83,6 +83,7 @@ dependencies {
 
     //ImagePicker
 //    implementation 'com.github.dhaval2404:imagepicker:2.1'
+    implementation 'com.google.android.material:material:1.11.0-alpha02'
 
     implementation 'androidx.viewpager2:viewpager2:1.1.0-beta02'
     //Testing

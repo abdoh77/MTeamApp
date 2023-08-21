@@ -1,22 +1,27 @@
 package com.example.mteam.data.repository
 
+import com.example.mteam.data.model.LatePlayers
 import com.example.mteam.data.model.PlayersNote
+import com.example.mteam.note.LatePlayersList
 import com.example.mteam.util.FireStoreTables
 import com.example.mteam.util.UiState
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class PlayersNoteRepositoryImp(
-    val database: FirebaseFirestore   //Repository depending on Firebase to get the data.
+    val database: FirebaseFirestore ,  //Repository depending on Firebase to get the data.
+
 ): PlayersNoteRepository {
 
     //we will get data from firebase collection
-    override fun getNotes(result: (UiState<List<PlayersNote>>) -> Unit){
-    database.collection(FireStoreTables.NOTE)
+    override fun getNotes(result: (UiState<List<PlayersNote>>) -> Unit) {
+        database.collection(FireStoreTables.NOTE)
             .get()
             .addOnSuccessListener {
                 val notes = arrayListOf<PlayersNote>()
-                for (document in it){  //convert the document into model class
-                    val note = document.toObject(PlayersNote::class.java) // convert the document to this model class
+                for (document in it) {  //convert the document into model class
+                    val note =
+                        document.toObject(PlayersNote::class.java) // convert the document to this model class
                     notes.add(note) // add model class into the playersNote list
                 }
                 result.invoke(
@@ -36,7 +41,7 @@ class PlayersNoteRepositoryImp(
         val document = database.collection(FireStoreTables.NOTE).document()
         note.id = document.id
 
-       document
+        document
             .set(note)
             .addOnSuccessListener {
                 result.invoke(
@@ -95,3 +100,20 @@ class PlayersNoteRepositoryImp(
             }
     }
 }
+
+//    override fun addLatePlayers(lateNotes: LatePlayers, result: (UiState<String>) -> Unit){
+//       val late = database.collection("note").document(auth.uid!!).collection("lateList")
+//           .whereEqualTo("username", lateNotes.username ).get()
+//           .addOnSuccessListener{
+//                it.documents.let{
+//                    if (it.isEmpty()){
+//
+//                    }else{
+//                        val name = it.first().toObject(LatePlayersList::class.java)
+//                    }
+//                }
+//           }.addOnFailureListener{
+//
+//           }
+//    }
+//}
