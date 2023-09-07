@@ -19,8 +19,19 @@ class PlayersNoteViewModel @Inject constructor(
 
     //To pass data from view model to fragment or activity we use livedata
     private val _notes = MutableLiveData<UiState<List<PlayersNote>>>()
+    private val _late_notes = MutableLiveData< UiState<List<LatePlayers>>>()
+
+//    // variable for bottom sheet Excuse
+//    val _bse = MutableLiveData<UiState<List<PlayersNote>>>()
+
+    val lateNote : LiveData<UiState<List<LatePlayers>>>
+        get() = _late_notes
     val note: LiveData<UiState<List<PlayersNote>>>
         get() = _notes
+
+//   val bse : LiveData<UiState<List<PlayersNote>>>
+//       get() = _bse
+
 
     // to add note
     private val _addNote = MutableLiveData< UiState<String>>()
@@ -37,10 +48,10 @@ class PlayersNoteViewModel @Inject constructor(
     val deleteNote: LiveData<UiState<String>> //we used String because we are going to pass doucments ID
         get() = _deleteNote
 
-//    //Add to late
-//    private val _addLateList = MutableLiveData<UiState<String>>()
-//    val addLateList: LiveData<UiState<String>>
-//        get() = _addLateList
+    //Add to late
+    private val _bse = MutableLiveData<UiState<String>>()
+    val bse: LiveData<UiState<String>>
+        get() = _bse
 
 
     fun getNotes() {
@@ -66,6 +77,14 @@ class PlayersNoteViewModel @Inject constructor(
 
     }
 
+    fun excuseNote(bse: PlayersNote){ //will pass the note object
+        _bse.value =UiState.Loading // to trger the loading state
+        repository.excuseNote(bse){ //getting the note from repository
+            _bse.value = it
+        }
+
+    }
+
     fun deleteNote(note: PlayersNote) {
         _deleteNote.value =UiState.Loading // to trger the loading state
         repository.deleteNote(note){ //getting the note from repository
@@ -73,12 +92,26 @@ class PlayersNoteViewModel @Inject constructor(
         }
     }
 
-//    fun addLatePlayers(lateNotes: LatePlayers){
+//    fun getLatePlayers(){
+//        _late_notes.value = UiState.Loading
+//        repository.getLatePlayers {
+//            _late_notes.value = it
+//        }
+//    }
+
+//    fun addLatePlayers(note: PlayersNote){
 //        _addLateList.value = UiState.Loading
-//        repository.addLatePlayers(lateNotes){
+//        repository.addLatePlayers(note){
 //            _addLateList.value = it
 //        }
 //    }
 
+
+//    fun addExcuse(ex: PlayersNote){
+//        _bse.value = UiState.Loading
+//        repository.addExcuse(ex){
+//            _bse.value = it
+//        }
+//    }
 
 }

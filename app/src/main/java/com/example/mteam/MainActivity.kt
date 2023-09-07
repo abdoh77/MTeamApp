@@ -2,17 +2,10 @@ package com.example.mteam
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils.replace
-import android.view.MenuItem
-import androidx.fragment.app.Fragment
-import androidx.navigation.NavOptions
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.mteam.note.LatePlayersList
-import com.example.mteam.note.NotePlayersDetails
-import com.example.mteam.note.NotePlayersList
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,9 +21,14 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 
 
+
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.players_nav_list_to_details) as NavHostFragment
         val navController = navHostFragment.navController
         bottomNavigationView.setupWithNavController(navController)
+
+        val appBarConfiguration = AppBarConfiguration(setOf(R.id.notePlayersList, R.id.late_fragment))
+        setupActionBarWithNavController(navController, appBarConfiguration)
+
 
         }
     }

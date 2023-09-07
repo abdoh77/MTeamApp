@@ -1,16 +1,20 @@
-package com.example.mteam.note
+package com.example.mteam.note.LateNotes
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.mteam.R
+import com.example.mteam.data.model.LatePlayers
 import com.example.mteam.databinding.FragmentLatePlayersBinding
-import com.example.mteam.databinding.FragmentNotePlayersListBinding
+import com.example.mteam.note.PlayersNoteViewModel
+import com.example.mteam.util.UiState
+import com.example.mteam.util.hide
+import com.example.mteam.util.show
+import com.example.mteam.util.toast
+
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,12 +22,16 @@ class LatePlayersList : Fragment(R.layout.fragment_late_players) {
 
     val TAG: String = "LatePlayersList"
     lateinit var binding : FragmentLatePlayersBinding
+    var list: MutableList<LatePlayers> = arrayListOf()
     val viewModel: PlayersNoteViewModel by viewModels()  // instance of viewModel to get the data to the fragment
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,24 +41,46 @@ class LatePlayersList : Fragment(R.layout.fragment_late_players) {
 //        return inflater.inflate(R.layout.fragment_late_players, container, false)
         binding = FragmentLatePlayersBinding.inflate(layoutInflater)
         return binding.root
-    }
 
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val adapter by lazy {
-//            LatePlayersNoteAdapter(
-//                OnItemClickListener(Int,LatePlayersList -> Unit)
-//            )
-//        }
-//        binding.recyclerView.adapter = LatePlayersNoteAdapter()
-//        binding.recyclerView.itemAnimator = null
-//        binding.late.setOnClickListener{
-//            findNavController().navigate(R.id.action_notePlayersList_to_notePlayersDetails,Bundle().apply {
-//                putString("type","create")
-//            })
-//
-//        }
+
+        val adapter = LatePlayersNoteAdapter()
+
+        binding.recyclerView.adapter = adapter
+        binding.recyclerView.itemAnimator = null
+
+//        viewModel.getLatePlayers()
+
+//      viewModel.addLatePlayers(LatePlayers(
+//          "","","","",""
+//      ))
+
+        viewModel.lateNote.observe(viewLifecycleOwner){
+            when(it){
+
+                is UiState.Loading -> {
+                    binding.progressBar.show()
+                    //Log.e(TAG,"Loading")
+                }
+                is UiState.Failure -> {
+                    binding.progressBar.hide()
+                    toast(it.error)
+//                Log.e(TAG,it.error. toString())
+
+                }
+                is UiState.Success -> {
+                    binding.progressBar.hide()
 
 
-}
+
+                }
+
+
+            }
+        }
+
+
+    }
 }
