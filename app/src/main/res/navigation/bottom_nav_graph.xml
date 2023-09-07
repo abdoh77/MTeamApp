@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_note_players_list" />
     <fragment
         android:id="@+id/latePlayersList"
-        android:name="com.example.mteam.note.LatePlayersList"
+        android:name="com.example.mteam.note.LateNotes.LatePlayersList"
         android:label="fragment_late_players"
         tools:layout="@layout/fragment_late_players" />
 </navigation>

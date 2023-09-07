@@ -13,7 +13,7 @@
     <fragment
         android:id="@+id/notePlayersList"
         android:name="com.example.mteam.note.NotePlayersList"
-        android:label="fragment_note_players_list"
+        android:label="players list"
         tools:layout="@layout/fragment_note_players_list" >
         <action
             android:id="@+id/action_notePlayersList_to_notePlayersDetails"
@@ -24,7 +24,7 @@
     </fragment>
     <fragment
         android:id="@+id/latePlayers"
-        android:name="com.example.mteam.note.LatePlayersList"
-        android:label="fragment_late_players"
+        android:name="com.example.mteam.note.LateNotes.LatePlayersList"
+        android:label="late players"
         tools:layout="@layout/fragment_late_players" />
 </navigation>

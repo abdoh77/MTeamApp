@@ -4,3 +4,4 @@
     <item android:drawable="@color/purple" android:state_selected="true" android:color="@color/purple" />
 <!--    <item android:drawable="@color/transparent" android:color="@color/trans" />-->
 </selector>
+

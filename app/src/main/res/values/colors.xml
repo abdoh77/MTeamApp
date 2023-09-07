@@ -5,6 +5,9 @@
     <color name="trans">#00000000 </color>
     <color name="purple">#8B33FF</color>
     <color name="transparent">#EAE1F5</color>
+    <color name="red"> #FF0000 </color>
+    <color name="gray">#808080 </color>
+
 
 
 </resources>

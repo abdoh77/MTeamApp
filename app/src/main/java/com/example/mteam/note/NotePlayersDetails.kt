@@ -109,6 +109,8 @@ class NotePlayersDetails : Fragment() {
             )
         }
 
+
+
         viewModel.updateNote.observe(viewLifecycleOwner){
             //This is how we got data from live data inside fragment
             when(it){
@@ -150,11 +152,13 @@ class NotePlayersDetails : Fragment() {
                         binding.userName.setText(objNote?.username)
                         binding.submitDialog.hide()
 
+
                     }
                     "creat" ->{
                         isEdit = false
 
                         binding.submitDialog.setText("Create")
+
 
                     }
                     "edit" ->{

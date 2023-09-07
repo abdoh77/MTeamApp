@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/excuse_frag"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:id="@+id/bottom_sheet_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Excuse ?"
+        android:textSize="26sp"
+        android:layout_gravity="center"/>
+
+    <RadioGroup
+        android:id="@+id/excuse_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="25dp"
+        >
+
+        <RadioButton
+            android:id="@+id/rb_noExcuse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Exuse"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:checked="true"
+            android:layout_gravity="center"/>
+
+        <RadioButton
+            android:id="@+id/rb_Excuse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Excused"
+            android:textSize="26sp"
+            android:textStyle="bold">
+        </RadioButton>
+    </RadioGroup>
+
+         <com.google.android.material.textfield.TextInputLayout
+             android:id="@+id/tv_input"
+             android:layout_width="match_parent"
+             android:layout_height="80dp"
+             android:layout_marginVertical="10dp"
+             android:layout_marginHorizontal="20dp" >
+
+             <com.google.android.material.textfield.TextInputEditText
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent"
+                 android:id="@+id/input_excuse_bs"
+                 android:hint="type your excuse">
+
+
+             </com.google.android.material.textfield.TextInputEditText>
+
+
+         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bsButtonSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="20dp"
+            android:text="Save" />
+
+
+</LinearLayout>
+

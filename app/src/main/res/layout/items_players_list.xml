@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/item_layout"
     app:cardCornerRadius="10dp"
     app:cardElevation="8dp"
     app:cardMaxElevation="5dp"
     android:layout_margin="10dp"
-    >
+    tools:context=".note.NoteListItems">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -55,14 +56,15 @@
                 android:id="@+id/edit"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:layout_marginEnd="50dp"
+                android:layout_marginLeft="80dp"
                 android:padding="8dp"
                 android:src="@drawable/baseline_edit_24"
-                app:tint="@color/black" />
+                app:tint="@color/black"
+                android:contentDescription="Edit" />
 
             <ImageView
                 android:id="@+id/delete"
-                android:layout_width="50dp"
+                android:layout_width="40dp"
                 android:layout_height="50dp"
                 android:src="@drawable/baseline_delete_24"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -102,12 +104,16 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:padding="11dp">
+            android:padding="11dp"
+            android:layout_marginLeft="99dp"
+            >
+
 
             <ImageButton
                 android:id="@+id/absence_icon"
-                android:layout_width="50dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
+                android:background="@color/trans"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
                 android:contentDescription="Absent"
@@ -116,10 +122,11 @@
 
             <ImageButton
                 android:id="@+id/late_icon"
-                android:layout_width="50dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
+                android:background="@color/trans"
                 android:contentDescription="Late"
                 android:src="@drawable/default_timer_off" />
 
@@ -127,10 +134,9 @@
                 android:id="@+id/present_icon"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-
                 android:layout_gravity="center"
                 android:layout_margin="5dp"
-
+                android:background="@color/trans"
                 android:contentDescription="OnTime"
                 android:src="@drawable/baseline_turned_in_not_24" />
 

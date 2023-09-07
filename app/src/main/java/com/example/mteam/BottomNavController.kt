@@ -1,12 +1,9 @@
 package com.example.mteam
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.text.TextUtils.replace
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.mteam.data.model.PlayersNote
-import com.example.mteam.note.LatePlayersList
+import com.example.mteam.note.LateNotes.LatePlayersList
 import com.example.mteam.note.NotePlayersList
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,7 +14,7 @@ class BottomNavController : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.bottom_nav_controller)
+        setContentView(R.layout.late_bottom_sheet)
 
         val playersListFrag = NotePlayersList()
         val latePlayerFrag = LatePlayersList()

@@ -14,6 +14,11 @@ interface PlayersNoteRepository {
 
     fun deleteNote(note: PlayersNote, result: (UiState<String>) -> Unit)
 
-//    fun addLatePlayers(lateNotes: LatePlayers, result: (UiState<String>) -> Unit)
+  // fun getLatePlayers(result: (UiState<List<LatePlayers>>) -> Unit)
 
+//   fun addLatePlayers(note: PlayersNote, result: (UiState<String>) -> Unit)
+
+   fun excuseNote(note: PlayersNote, result: (UiState<String>) -> Unit)
+
+//    fun addExcuse(ex: PlayersNote, result: (UiState<String>) -> Unit)
 }
