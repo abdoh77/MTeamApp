@@ -99,20 +99,44 @@ class PlayersNoteRepositoryImp(
     }
     val TAG = "Late Acticity"
 
-    override fun excuseNote(note: PlayersNote, result: (UiState<String>) -> Unit) {
-        val document = database.collection(FireStoreTables.NOTE)
-        document.whereEqualTo("username", TAG).get()
+    override fun getLateNotes(result: (UiState<List<PlayersNote>>) -> Unit) {
+        database.collection(FireStoreTables.LatePlayersNote)
+            .get()
             .addOnSuccessListener {
-                if (it != null){
-
-                    val userinfo = it.toObjects(PlayersNote::class.java)
-
-                    Log.e("Username", "${userinfo}")
-
+                val late_Notes = arrayListOf<PlayersNote>()
+                for (document in it) {  //convert the document into model class
+                    val note = document.toObject(PlayersNote::class.java) // convert the document to this model class
+                    late_Notes.add(note) // add model class into the playersNote list
                 }
+                result.invoke(
+                    UiState.Success(late_Notes)
+                )
+            }
+            .addOnFailureListener {
+                result.invoke(
+                    UiState.Failure(
+                        it.localizedMessage
+                    )
+                )
+            }
+
+    }
+
+
+    override fun addSelectedItem(note: PlayersNote, result: (UiState<String>) -> Unit) {
+        val document = database.collection(FireStoreTables.LatePlayersNote).document(note.id)
+        document
+            .set(note)
+            .addOnSuccessListener {
+//                if (it != null){
+//
+//                    Log.e("Username", "${userinfo}")
+//
+//                }
+
 
                 result.invoke(
-                    UiState.Success("Note updated successfully")
+                    UiState.Success("Late Item Add")
 
                 )
             }
@@ -125,6 +149,8 @@ class PlayersNoteRepositoryImp(
 
             }
     }
+
+
 
 }
 

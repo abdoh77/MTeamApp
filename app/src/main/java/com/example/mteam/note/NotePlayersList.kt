@@ -2,6 +2,7 @@ package com.example.mteam.note
 
 
 import android.os.Bundle
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -14,19 +15,24 @@ import com.example.mteam.data.model.LatePlayers
 import com.example.mteam.data.model.PlayersNote
 import com.example.mteam.databinding.FragmentNotePlayersListBinding
 import com.example.mteam.note.LateNotes.ExBottomSheet
+import com.example.mteam.note.LateNotes.LatePlayersList
 import com.example.mteam.util.UiState
 import com.example.mteam.util.hide
 import com.example.mteam.util.show
 import com.example.mteam.util.toast
 
 import dagger.hilt.android.AndroidEntryPoint
-
+import java.util.Date
 
 
 @AndroidEntryPoint
 class NotePlayersList : Fragment(R.layout.fragment_note_players_list), NoteListingAdapter.ItemClickListener{
 
     var objLNote: LatePlayers? = null
+
+
+
+
 
     val bottomSheetFragment = ExBottomSheet()
     val TAG: String = "NotePlayersList"
@@ -38,8 +44,11 @@ class NotePlayersList : Fragment(R.layout.fragment_note_players_list), NoteListi
 
 
 
+
+
    val adapter by lazy {
         NoteListingAdapter(
+
 
             listener = null
             ,
@@ -47,10 +56,7 @@ class NotePlayersList : Fragment(R.layout.fragment_note_players_list), NoteListi
                 findNavController().navigate(
                     R.id.action_notePlayersList_to_notePlayersDetails,
                     Bundle().apply {
-                        putString(
-                            "type",
-                            "view"
-                        )    //this is for update UI accordingly with type of parem
+                        putString("type", "view")    //this is for update UI accordingly with type of parem
                         putParcelable("note", item)
                     })
 
@@ -81,8 +87,9 @@ class NotePlayersList : Fragment(R.layout.fragment_note_players_list), NoteListi
 //                          viewModel.getLatePlayers()
 //                         viewModel.excuseNote( PlayersNote())
                 onItemClick(item.username)
-                latePosition = pos
-                viewModel.excuseNote(item)
+                onItemClickListener(item)
+//                latePosition = pos
+//                viewModel.excuseNote(item)
 
 
             })
@@ -178,11 +185,39 @@ class NotePlayersList : Fragment(R.layout.fragment_note_players_list), NoteListi
 
         }
 
+    fun sendItemToLateFragment(item: PlayersNote){
+        val bundle = Bundle()
+        bundle.putParcelable("lateItem", item)
+        Log.e("itemToSend", "${item}")
+        val lateFragment = LatePlayersList()
+        lateFragment.arguments = bundle
+
+        viewModel.addSelectedItem(PlayersNote(
+            id = item.id,
+            username = item.username.toString(),
+            mobile = item.mobile.toString(),
+            date = Date()
+        ))
+
+
+        lateFragment.recivingLatePlayers(item)
+
+
+
+    }
+
     override fun onItemClick(field: String) {
 //        val bottomSheet = ExBottomSheet()
        val bottomSheet = ExBottomSheet.newInstance(field)
         bottomSheet.show(getParentFragmentManager(), "Bottom show")
     }
+
+
+        override fun onItemClickListener(item: PlayersNote) {
+            sendItemToLateFragment(item)
+        }
+
+
 
 //    override fun OnClick(position: Int) {
 //

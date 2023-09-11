@@ -53,7 +53,7 @@ class ExBottomSheet: BottomSheetDialogFragment() {
         val item = arguments?.getString("username")
 
         nameItem = item!!
-        Log.d("itemdSelected", "${nameItem} ")
+        Log.d("FieldItemdSelected", "${nameItem} ")
 
     }
 
@@ -98,6 +98,7 @@ class ExBottomSheet: BottomSheetDialogFragment() {
         binding.bottomSheetTitle.setText("what is ${nameItem} Excuse?")
 
         binding.rbNoExcuse.setOnClickListener{
+
             Toast.makeText(context,"No Excuse selected",Toast.LENGTH_LONG).show()
         }
 
