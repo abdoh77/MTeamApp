@@ -2,18 +2,20 @@ package com.example.mteam.note
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mteam.data.model.PlayersNote
 import com.example.mteam.databinding.ItemsPlayersListBinding
-
+import java.text.SimpleDateFormat
 
 
 class NoteListingAdapter(
+//    private var itemClickListener: ItemClickListener? = null,.
+//    private var activity: FragmentActivity? = null,
     private var listener: ItemClickListener? = null,
     val onItemClicked: (Int, PlayersNote) -> Unit,
     val onEditClicked: (Int, PlayersNote) -> Unit,
     val onDeleteClicked: (Int, PlayersNote) -> Unit,
-
     val onLateClicked: (Int, PlayersNote) -> Unit
 
 
@@ -24,19 +26,7 @@ class NoteListingAdapter(
 
 
     private var list: MutableList<PlayersNote> = arrayListOf()
-
-//    inner class  bottomViewHolder(val itemBudgetBinding:ItemsPlayersListBinding ): RecyclerView.ViewHolder(
-//        itemBudgetBinding.root
-//    ){
-//        init {
-//            itemBudgetBinding.lateIcon.setOnClickListener {
-//                val position = bindingAdapterPosition
-//                listener.OnClick(position)
-//                true
-//            }
-//        }
-//
-//    }
+    val sdf = SimpleDateFormat("yyyy-MM-dd' 'HH:mm:ss")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = ItemsPlayersListBinding.inflate(LayoutInflater.from(parent.context),parent,false)
@@ -50,6 +40,11 @@ class NoteListingAdapter(
         holder.itemView.setOnClickListener{
             listener?.onItemClick(list[position].username)
         }
+
+//        holder.itemView.setOnClickListener{
+//            itemClickListener?.onItemClickListener(item)
+//
+//        }
     }
     fun updateList(list: MutableList<PlayersNote>){
         this.list = list
@@ -78,11 +73,16 @@ class NoteListingAdapter(
 //            binding.id.setText(item.id)
             binding.mTitle.setText(item.username)
             binding.mSubTitle.setText(item.mobile)
+            binding.date.setText(sdf.format(item.date))
             binding.edit.setOnClickListener { onEditClicked.invoke(bindingAdapterPosition,item) }
             binding.delete.setOnClickListener { onDeleteClicked.invoke(bindingAdapterPosition,item) }
             binding.itemLayout.setOnClickListener { onItemClicked.invoke(bindingAdapterPosition,item) }
+            binding.lateIcon.setOnClickListener {
+//                val item = list[bindingAdapterPosition]
+//                (activity as? NotePlayersList)?.sendItemToLateFragment(item)
 
-            binding.lateIcon.setOnClickListener { onLateClicked.invoke(bindingAdapterPosition, item) }
+                onLateClicked.invoke(bindingAdapterPosition, item) }
+
 
         }
     }
@@ -92,6 +92,8 @@ class NoteListingAdapter(
 //    }
 interface ItemClickListener {
     fun onItemClick(field: String)
+
+    fun onItemClickListener(item: PlayersNote)
 
 }
 

@@ -45,8 +45,8 @@
                     android:id="@+id/date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:hint="22 APR 2023 16:00:00"
                     android:layout_marginRight="50dp"
-                    android:text="20 APR"
                     android:textColor="@color/black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
